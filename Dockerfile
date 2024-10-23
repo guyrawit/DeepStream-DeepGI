@@ -21,11 +21,11 @@ ENV CMAKE_ARGS="-D CMAKE_BUILD_TYPE=Release -D WITH_GSTREAMER=ON"
 
 # Create OpenCV wheels using pip
 RUN cd opencv-python && \
-    pip wheel . --verbose 
+    pip wheel . --verbose
+    
+WORKDIR /app
 
-# # Install the generated wheel files
-# # Assuming the wheel files are in opencv-python/dist/ after the build
-# RUN pip install opencv-python/dist/*.whl
+RUN pip install ./opencv-python/*whl
 
 # Install any other Python dependencies listed in your requirements file
 RUN pip3 install -r requirements_deepstream.txt
